@@ -5,17 +5,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
 
-@Document(collection = "transactions")
 @Data
-public class Transaction {
+@Document(collection = "report")
+public class Report {
   @Id
   private String id;
-
-  private double amount;
-  private String originalCurrency;
-  private String targetCurrency;
-  private double convertedAmount;
+  private String reportType;
+  private double totalCredits;
+  private double totalDebits;
+  private double netFlow;
+  private String currency;
   private long timeStamp;
-
-  private String transactionType;
 }

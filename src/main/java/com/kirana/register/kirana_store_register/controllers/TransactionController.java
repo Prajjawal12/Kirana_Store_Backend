@@ -19,6 +19,9 @@ public class TransactionController {
 
   @PostMapping
   public ResponseEntity<Transaction> recordTransaction(@RequestBody Transaction dto) throws Exception {
+    if (!"credit".equalsIgnoreCase(dto.getTransactionType()) && !"debit".equalsIgnoreCase(dto.getTransactionType())) {
+      return ResponseEntity.badRequest().build();
+    }
     Transaction transaction = transactionService.recordTransactionInDB(dto);
     return ResponseEntity.status(HttpStatus.CREATED).body(transaction);
   }

@@ -17,13 +17,14 @@ public class TransactionService {
   public Transaction recordTransactionInDB(Transaction dto) throws Exception {
     double convertedAmount = currencyConversionService.convertCurrency(dto.getAmount(),
         dto.getOriginalCurrency(), dto.getTargetCurrency());
+
     Transaction transaction = new Transaction();
     transaction.setAmount(dto.getAmount());
     transaction.setOriginalCurrency(dto.getOriginalCurrency());
     transaction.setTargetCurrency(dto.getTargetCurrency());
     transaction.setConvertedAmount(convertedAmount);
     transaction.setTimeStamp(System.currentTimeMillis());
-    System.out.println("Saving transaction: " + transaction);
+    transaction.setTransactionType(dto.getTransactionType());
     return transactionRepository.save(transaction);
   }
 }
