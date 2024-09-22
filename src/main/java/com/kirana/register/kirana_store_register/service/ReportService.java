@@ -55,7 +55,7 @@ public class ReportService {
       if ("credit".equalsIgnoreCase(transaction.getTransactionType())) {
         totalCredits += transaction.getConvertedAmount();
       } else if ("debit".equalsIgnoreCase(transaction.getTransactionType())) {
-        totalDebits += transaction.getConvertedAmount(); // Keep it as is for debits
+        totalDebits += transaction.getConvertedAmount();
       }
     }
 
