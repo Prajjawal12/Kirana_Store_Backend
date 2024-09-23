@@ -7,15 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 import com.kirana.register.kirana_store_register.model.User;
 import com.kirana.register.kirana_store_register.service.UserService;
-import com.kirana.register.kirana_store_register.utils.JwtUtil;
-
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
 public class UserController {
-  @Autowired
-  private JwtUtil jwtUtil;
   @Autowired
   private UserService userService;
 
@@ -25,9 +21,7 @@ public class UserController {
       return ResponseEntity.badRequest().body("Username is already taken");
     }
     User registeredUser = userService.registerUser(user);
-    String token = jwtUtil.generateToken(registeredUser.getUsername(), registeredUser.getRole());
-
-    return ResponseEntity.ok(Map.of("user", registeredUser, "token", token));
+    return ResponseEntity.ok(registeredUser);
   }
 
   @PostMapping("/login")

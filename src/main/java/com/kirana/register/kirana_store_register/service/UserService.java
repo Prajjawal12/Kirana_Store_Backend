@@ -23,24 +23,14 @@ public class UserService {
 
   public User registerUser(User user) {
     user.setPassword(passwordEncoder.encode(user.getPassword()));
-    User registeredUser = userRepository.save(user);
-
-    String token = jwtUtil.generateToken(registeredUser.getUsername(), registeredUser.getRole());
-    System.out.println("Token generated for user: " + registeredUser.getUsername() + " - " + token);
-
-    return registeredUser;
+    return userRepository.save(user);
   }
 
   public String authenticateUser(String username, String password) throws Exception {
     User user = userRepository.findByUsername(username)
         .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-    System.out.println("Authenticating user: " + username);
-    System.out.println("Input password: " + password);
-
     boolean isPasswordMatch = passwordEncoder.matches(password.trim(), user.getPassword());
-    System.out.println("Stored hashed password: " + user.getPassword());
-    System.out.println("Password match: " + isPasswordMatch);
 
     if (isPasswordMatch) {
       return jwtUtil.generateToken(user.getUsername(), user.getRole());

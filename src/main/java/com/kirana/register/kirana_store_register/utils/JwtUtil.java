@@ -11,7 +11,7 @@ import java.util.Date;
 @Component
 public class JwtUtil {
   private static final String SECRET_KEY = "iuebfuewbfoiewubfoiawfniowbnfiuowebfuiewbfiub12iuob4io21bn2iobrio32n3ion";
-  private static final long EXPIRATION_TIME = 86400000; // 1 day in milliseconds
+  private static final long EXPIRATION_TIME = 86400000;
 
   private SecretKey getKey() {
     return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());

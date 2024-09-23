@@ -18,6 +18,8 @@ public class SecurityConfig {
 
   @Autowired
   private JwtUtil jwtUtil;
+  @Autowired
+  private CustomAccessDeniedHandlers customAccessDeniedHandlers;
 
   @Bean
   public PasswordEncoder passwordEncoder() {
@@ -33,6 +35,7 @@ public class SecurityConfig {
             .requestMatchers("/api/reports/**").hasAnyRole("READ_WRITE", "READ_ONLY")
             .requestMatchers("/api/transactions/**").hasRole("READ_WRITE")
             .anyRequest().authenticated())
+        .exceptionHandling(exceptions -> exceptions.accessDeniedHandler(customAccessDeniedHandlers))
         .addFilterBefore(new JwtRequestFilter(jwtUtil), BasicAuthenticationFilter.class)
         .csrf(csrf -> csrf.disable());
 
