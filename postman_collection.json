@@ -1,0 +1,292 @@
+{
+  "info": {
+    "_postman_id": "7363e64f-5c72-4cf8-98c8-9aefac9f3643",
+    "name": "Kirana Store Backend",
+    "description": "The objective of this assignment is to develop a backend service for Kirana stores that facilitates the management of transaction registers. This service will track credit and debit transactions, ensuring effective financial management through features such as multi-currency support, financial reporting, user authentication, API rate limiting, and caching mechanisms.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "23251825"
+  },
+  "item": [
+    {
+      "name": "Transaction",
+      "item": [
+        {
+          "name": "Post Transactions",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{JWT}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"amount\": 500,\n    \"originalCurrency\": \"USD\",\n    \"targetCurrency\": \"INR\",\n    \"transactionType\": \"debit\" \n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/transactions",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "transactions"]
+            },
+            "description": "The Transaction API records credit and debit transactions in multiple currencies, utilizing real-time currency conversion rates from an external API to ensure accurate financial tracking for Kirana stores."
+          },
+          "response": [
+            {
+              "id": "66f2ba231a72fc177cb21b6f",
+              "amount": 1000.0,
+              "originalCurrency": "USD",
+              "targetCurrency": "INR",
+              "convertedAmount": 83573.6653812,
+              "timeStamp": 1727183395111,
+              "transactionType": "credit"
+            },
+            {
+              "id": "66f2ba051a72fc177cb21b6e",
+              "amount": 2000.0,
+              "originalCurrency": "USD",
+              "targetCurrency": "INR",
+              "convertedAmount": 167147.3307624,
+              "timeStamp": 1727183365465,
+              "transactionType": "credit"
+            },
+            {
+              "id": "66f2b9ec1a72fc177cb21b6d",
+              "amount": 1000.0,
+              "originalCurrency": "USD",
+              "targetCurrency": "INR",
+              "convertedAmount": 83573.6653812,
+              "timeStamp": 1727183340022,
+              "transactionType": "debit"
+            },
+            {
+              "id": "66f2b9d01a72fc177cb21b6c",
+              "amount": 500.0,
+              "originalCurrency": "USD",
+              "targetCurrency": "INR",
+              "convertedAmount": 41786.8326906,
+              "timeStamp": 1727183312016,
+              "transactionType": "debit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Report API",
+      "item": [
+        {
+          "name": "weekly-report",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{JWT}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/reports/weekly?currency=USD",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "reports", "weekly"],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "USD"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "66f2ba3e1a72fc177cb21b70",
+              "reportType": "weekly",
+              "totalCredits": 3000.0,
+              "totalDebits": 2200.0,
+              "netFlow": 800.0,
+              "currency": "USD",
+              "timeStamp": 1727183422169
+            }
+          ]
+        },
+        {
+          "name": "monthly-report",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{JWT}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/reports/monthly?currency=USD",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "reports", "monthly"],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "USD"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "66f2ba501a72fc177cb21b71",
+              "reportType": "monthly",
+              "totalCredits": 3000.0,
+              "totalDebits": 2200.0,
+              "netFlow": 800.0,
+              "currency": "USD",
+              "timeStamp": 1727183440986
+            }
+          ]
+        },
+        {
+          "name": "yearly-request",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{JWT}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/reports/yearly?currency=USD",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "reports", "yearly"],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "USD"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "66f2ba611a72fc177cb21b72",
+              "reportType": "yearly",
+              "totalCredits": 3000.0,
+              "totalDebits": 2200.0,
+              "netFlow": 800.0,
+              "currency": "USD",
+              "timeStamp": 1727183457173
+            }
+          ]
+        }
+      ],
+      "description": "The Reporting API generates comprehensive financial reports for Kirana stores, providing insights on total credits, debits, and net flow over specified periods (weekly, monthly, and yearly)."
+    },
+    {
+      "name": "authentication",
+      "item": [
+        {
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"example619\",\n  \"password\": \"testpassword\",\n  \"role\": \"ROLE_READ_WRITE\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/register",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "auth", "register"]
+            }
+          },
+          "response": [
+            {
+              "id": "66f2b8fa1a72fc177cb21b6b",
+              "username": "exampleuser",
+              "password": "$2a$10$waRupbb/8LX39yrk2FKcAekF.KPmLBRd5cx7k5dKI/Booi4R/RD/G",
+              "role": "ROLE_READ_WRITE"
+            }
+          ]
+        },
+        {
+          "name": "login",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{JWT}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"example619\",\n  \"password\": \"testpassword\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "auth", "login"]
+            },
+            "description": "The Authentication API secures access to the backend service by distinguishing between user authentication and authorization, managing roles such as read-write and read-only to ensure proper access control."
+          },
+          "response": [
+            {
+              "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJleGFtcGxldXNlciIsImlhdCI6MTcyNzE4MzE2NiwiZXhwIjoxNzI3MjY5NTY2LCJhdXRob3JpdGllcyI6IlJPTEVfUkVBRF9XUklURSJ9.3MRJ38W_tc2N1GpN6bGwnB1BQivhGCJ9btCfQtXutcguUDr1bcUOoQNP6ua5o3OMcFJVnCVMmYBxnkxYQB78YQ"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
