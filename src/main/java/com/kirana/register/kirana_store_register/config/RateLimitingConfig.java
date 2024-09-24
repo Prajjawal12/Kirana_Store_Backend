@@ -14,16 +14,34 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Rate Limiting configuration that implements a token bucket algorithm
+ * to limit the number of requests from clients.
+ */
 @Component
 public class RateLimitingConfig implements HandlerInterceptor {
   private final Map<String, Bucket> cache = new ConcurrentHashMap<>();
 
+  /**
+   * Creates a new Bucket with a refill rate of 10 requests per minute.
+   *
+   * @return a new Bucket instance
+   */
   private Bucket createNewBucket() {
     Refill refill = Refill.greedy(10, Duration.ofMinutes(1));
     Bandwidth limit = Bandwidth.classic(10, refill);
     return Bucket.builder().addLimit(limit).build();
   }
 
+  /**
+   * Intercepts requests to check if the rate limit has been exceeded.
+   *
+   * @param request  the HttpServletRequest
+   * @param response the HttpServletResponse
+   * @param handler  the handler for the request
+   * @return true if the request is allowed, false otherwise
+   * @throws IOException if an input or output exception occurs
+   */
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
       throws IOException {

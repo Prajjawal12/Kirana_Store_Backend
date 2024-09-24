@@ -1,0 +1,9 @@
+com.kirana.register.kirana_store_register
+com.kirana.register.kirana_store_register.config
+com.kirana.register.kirana_store_register.controllers
+com.kirana.register.kirana_store_register.dto
+com.kirana.register.kirana_store_register.exceptions
+com.kirana.register.kirana_store_register.model
+com.kirana.register.kirana_store_register.repository
+com.kirana.register.kirana_store_register.service
+com.kirana.register.kirana_store_register.utils

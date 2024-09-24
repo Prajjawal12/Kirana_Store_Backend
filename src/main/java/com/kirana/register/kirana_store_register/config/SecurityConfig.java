@@ -12,20 +12,37 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import com.kirana.register.kirana_store_register.utils.JwtUtil;
 
+/**
+ * Security configuration for the application, including HTTP security settings
+ * and password encoding.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
   @Autowired
   private JwtUtil jwtUtil;
+
   @Autowired
   private CustomAccessDeniedHandlers customAccessDeniedHandlers;
 
+  /**
+   * Bean for encoding passwords using BCrypt.
+   *
+   * @return the PasswordEncoder instance
+   */
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 
+  /**
+   * Configures the security filter chain for the application.
+   *
+   * @param http the HttpSecurity instance
+   * @return the SecurityFilterChain
+   * @throws Exception if an error occurs while configuring security
+   */
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
@@ -41,5 +58,4 @@ public class SecurityConfig {
 
     return http.build();
   }
-
 }

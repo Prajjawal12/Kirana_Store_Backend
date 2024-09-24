@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.kirana.register.kirana_store_register.service.ReportTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.046 s - in com.kirana.register.kirana_store_register.service.ReportTest
