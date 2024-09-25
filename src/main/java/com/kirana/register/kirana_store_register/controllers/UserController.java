@@ -58,7 +58,7 @@ public class UserController {
     String password = loginData.get("password");
 
     try {
-      // Authenticate the user
+      
       String token = userService.authenticateUser(username, password);
       logger.info("User {} logged in successfully.", username);
       return ResponseEntity.ok(Map.of("token", token));
