@@ -16,13 +16,12 @@ import lombok.Data;
 @Data
 public class Cache {
   @Id
-  private String id; // Unique identifier for the cache entry
+  private String id;ntry
 
-  private String originalCurrency; // The original currency code
+  private String originalCurrency;
 
-  private String targetCurrency; // The target currency code
+  private String targetCurrency;
 
-  private double rate; // The conversion rate from original to target currency
+  private double rate; 
 
-  private long timestamp; // The timestamp when the cache entry was created
-}
+  private long timestamp;
