@@ -2,6 +2,10 @@
 
 The Kirana Store Register backend facilitates the management of transaction registers for small businesses. It allows tracking of credit and debit transactions across multiple currencies with financial reports, user authentication, API rate limiting, and caching features.
 
+
+
+ 
+
 ## Tech Stack
 - **Java**: Enables strong type safety and clean code.
 - **Spring Boot**: Simplifies API development with built-in features for RESTful services and dependency management.
@@ -14,7 +18,7 @@ The Kirana Store Register backend facilitates the management of transaction regi
 - **Reporting API**: Generated weekly, monthly, and yearly financial reports.
 - **User Authentication and Auhtorization**: Secure access with distinct user roles (read-write, read-only).
 - **API Rate Limiting**: Implemented rate limiting to control request rates using Bucket4j.
-- **Caching**: Cached responses from the currency conversion API to avoid hitting external api limit.
+- **Caching**: Cached responses from the currency conversion API to reduce hitting api limit.
 
 ### Coding Guidelines Followed
 - **Framework**: Used Java, Spring Boot, and MongoDB for development.
@@ -71,14 +75,103 @@ spring.data.mongodb.uri=mongodb://localhost:27017/kirana_store_db
 ```
 
 ## Testing The Endpoints
+### Authentication API
+### POST `/api/auth/register`
+To register using a role
+``` 
 
-- To test the APIs, refer to the following resources:
+curl -X POST http://localhost:8080/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+        "username": "example619",
+        "password": "testpassword",
+        "role": "ROLE_READ_WRITE"
+      }'
 
-- **Postman Collection**: Test the APIs using the Postman collection available [here](./postman_collection.json).
-- **API Documentation**: Detailed API documentation is provided in [Kirana_Store_Backend.docx](./Kirana_Store_Backend.docx).
-- **Javadoc Documentation**: Extensive code documentation is available at [target/classes/site/apidocs](./target/classes/site/apidocs).
+```
+
+### POST `/api/auth/login`
+To log in and receive a JWT token:
+
+```bash
+curl -X POST http://localhost:8080/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+        "username": "exampleuser",
+        "password": "testpassword"
+      }'
+```
+
+### Response will contain a JWT token
+
+```
+{
+  "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJleGFtcGxldXNlciIsImlhdCI6MTcyNzE4MzE2NiwiZXhwIjoxNzI3MjY5NTY2LCJhdXRob3JpdGllcyI6IlJPTEVfUkVBRF9XUklURSJ9.3MRJ38W_tc2N1GpN6bGwnB1BQivhGCJ9btCfQtXutcguUDr1bcUOoQNP6ua5o3OMcFJVnCVMmYBxnkxYQB78YQ"
+}
+
+```
+### Transaction API
+
+#### POST `/api/transactions`
+To record a financial transaction (credit or debit):
+
+```bash
+curl -X POST http://localhost:8080/api/transactions \
+  -H "Authorization: Bearer <JWT>" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "amount": 500,
+        "originalCurrency": "USD",
+        "targetCurrency": "INR",
+        "transactionType": "debit"
+      }'
+```
+## Weekly Report API
+
+### GET `/api/reports/weekly`
+To fetch the weekly report:
+
+```bash
+curl -X GET "http://localhost:8080/api/reports/weekly?currency=USD" \
+  -H "Authorization: Bearer <JWT>"
+```
+## Monthly Report API
+
+### GET `/api/reports/monthly`
+To fetch the monthly report:
+
+```bash
+curl -X GET "http://localhost:8080/api/reports/monthly?currency=USD" \
+  -H "Authorization: Bearer <JWT>"
+```
+## User Registration API
+
+### POST `/api/auth/register`
+To register a new user:
+
+```bash
+curl -X POST http://localhost:8080/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+        "username": "exampleuser",
+        "password": "testpassword",
+        "role": "ROLE_READ_WRITE"
+      }'
+```
 
 
+
+
+
+
+## Contact Information
+
+If you have any questions, suggestions, or issues, feel free to reach out:
+
+- **Name**: Prajjawal Deep Yadav
+- **Email**: [deepyadavprajjawal@gmail.com](mailto:deepyadavprajjawal@gmail.com)
+- **GitHub**: [Prajjawal12](https://github.com/Prajjawal12)
+- **LinkedIn**: [Prajjawal Deep Yadav](https://www.linkedin.com/in/prajjawal-deep-yadav/)
 
 
 
