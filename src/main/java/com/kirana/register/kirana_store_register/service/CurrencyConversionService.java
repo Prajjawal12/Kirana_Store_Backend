@@ -17,13 +17,13 @@ import java.util.Optional;
 @Service
 public class CurrencyConversionService {
 
-  private static final String API_URL = "https://api.fxratesapi.com/latest"; // External API for fetching conversion
-                                                                             // rates
-  private static final long CACHE_EXPIRY = 3600000; // Cache expiry time in milliseconds
+  private static final String API_URL = "https://api.fxratesapi.com/latest"; 
+                                                                            
+  private static final long CACHE_EXPIRY = 3600000; 
   private static final Logger logger = LoggerFactory.getLogger(CurrencyConversionService.class);
 
   @Autowired
-  private CacheRepository cacheRepository; // Repository for caching currency conversion rates
+  private CacheRepository cacheRepository; 
 
   /**
    * Converts an amount from one currency to another.
