@@ -36,7 +36,7 @@ public class CurrencyConversionService {
    */
   public double convertCurrency(double amount, String originalCurrency, String targetCurrency) throws Exception {
     try {
-      // Check if conversion rate is cached
+      
       Optional<Cache> cachedRateOpt = cacheRepository.findLatestByOriginalCurrencyAndTargetCurrency(originalCurrency,
           targetCurrency);
       if (cachedRateOpt.isPresent()) {
@@ -47,16 +47,16 @@ public class CurrencyConversionService {
         }
       }
 
-      // Fetch conversion rates from external API
+      
       RestTemplate restTemplate = new RestTemplate();
       CurrencyResponseDTO currencyResponse = restTemplate.getForObject(API_URL, CurrencyResponseDTO.class);
 
-      // Check if API response is successful
+   
       if (currencyResponse != null && currencyResponse.isSuccess()) {
         double rate = currencyResponse.getRates().get(targetCurrency)
             / currencyResponse.getRates().get(originalCurrency);
 
-        // Cache the conversion rate
+       
         try {
           Cache newCache = new Cache();
           newCache.setOriginalCurrency(originalCurrency);
@@ -69,7 +69,7 @@ public class CurrencyConversionService {
           logger.warn("Failed to cache currency conversion rate: {} to {}", originalCurrency, targetCurrency);
         }
 
-        return amount * rate; // Return converted amount
+        return amount * rate; 
       } else {
         throw new Exception("Currency Conversion API Failed!");
       }
