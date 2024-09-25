@@ -7,5 +7,5 @@ import com.kirana.register.kirana_store_register.model.Report;
  * Repository interface for managing Report entities.
  */
 public interface ReportRepository extends MongoRepository<Report, String> {
-  // Additional query methods can be defined here if needed in the future.
+  
 }
