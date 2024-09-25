@@ -16,7 +16,7 @@ The Kirana Store Register backend facilitates the management of transaction regi
 #### Functional Requirements
 - **Transaction API**: Recorded transactions in multiple currencies using an external currency conversion API.
 - **Reporting API**: Generated weekly, monthly, and yearly financial reports.
-- **User Authentication and Auhtorization**: Secure access with distinct user roles (read-write, read-only).
+- **User Authentication and Authorization**: Secure access with distinct user roles (read-write, read-only).
 - **API Rate Limiting**: Implemented rate limiting to control request rates using Bucket4j.
 - **Caching**: Cached responses from the currency conversion API to reduce hitting api limit.
 
