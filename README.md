@@ -113,7 +113,7 @@ curl -X POST http://localhost:8080/api/auth/login \
 ### Transaction API
 
 #### POST `/api/transactions`
-To record a financial transaction (credit or debit):
+To record a financial transaction (credit or debit),only available for those with "ROLE_READ_WRITE" authorization,for "ROLE_READ" only are not allowed to post transactions.:
 
 ```bash
 curl -X POST http://localhost:8080/api/transactions \
