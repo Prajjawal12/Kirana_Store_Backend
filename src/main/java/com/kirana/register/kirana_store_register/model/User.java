@@ -11,11 +11,11 @@ import lombok.Data;
 @Document(collection = "users")
 public class User {
   @Id
-  private String id; // Unique identifier for the user
+  private String id; 
 
-  private String username; // Username of the user
+  private String username; 
 
-  private String password; // Password of the user
+  private String password; 
 
-  private String role; // Role of the user (e.g., admin, user)
+  private String role; 
 }
