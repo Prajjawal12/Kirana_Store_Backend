@@ -7,6 +7,6 @@ import lombok.Data;
  */
 @Data
 public class ReportRequestDTO {
-  private String reportType; // Type of report (e.g., weekly, monthly, yearly)
-  private String currency; // Currency for the report
+  private String reportType;
+  private String currency;
 }
