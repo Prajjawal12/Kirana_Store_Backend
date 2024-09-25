@@ -11,17 +11,17 @@ import lombok.Data;
 @Document(collection = "transactions")
 public class Transaction {
   @Id
-  private String id; // Unique identifier for the transaction
+  private String id;
 
-  private double amount; // Amount of the transaction
+  private double amount; 
 
-  private String originalCurrency; // Original currency of the transaction
+  private String originalCurrency; 
 
-  private String targetCurrency; // Target currency of the transaction
+  private String targetCurrency; 
 
-  private double convertedAmount; // Converted amount in target currency
+  private double convertedAmount; 
 
-  private long timeStamp; // Timestamp of the transaction
+  private long timeStamp; 
 
-  private String transactionType; // Type of the transaction (credit/debit)
+  private String transactionType;
 }
