@@ -39,14 +39,14 @@ public class TransactionController {
       @RequestHeader("Authorization") String token) {
     logger.info("Received transaction request: {}", dto);
 
-    // Validate the transaction type
+  
     if (!"credit".equalsIgnoreCase(dto.getTransactionType()) && !"debit".equalsIgnoreCase(dto.getTransactionType())) {
       logger.warn("Invalid transaction type: {}", dto.getTransactionType());
       return ResponseEntity.badRequest().build();
     }
 
     try {
-      // Record the transaction in the database
+    
       Transaction transaction = transactionService.recordTransactionInDB(dto);
       return ResponseEntity.status(HttpStatus.CREATED).body(transaction);
     } catch (TransactionExceptions e) {
