@@ -144,6 +144,16 @@ To fetch the monthly report:
 curl -X GET "http://localhost:8080/api/reports/monthly?currency=USD" \
   -H "Authorization: Bearer <JWT>"
 ```
+
+## Yearly Report API
+
+### GET `/api/reports/yearly`
+To fetch the monthly report:
+
+```bash
+curl -X GET "http://localhost:8080/api/reports/yearly?currency=USD" \
+  -H "Authorization: Bearer <JWT>"
+```
 ## User Registration API
 
 ### POST `/api/auth/register`
