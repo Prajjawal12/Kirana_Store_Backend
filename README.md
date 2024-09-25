@@ -83,7 +83,7 @@ To register using a role
 curl -X POST http://localhost:8080/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{
-        "username": "example619",
+        "username": "exampleuser",
         "password": "testpassword",
         "role": "ROLE_READ_WRITE"
       }'
