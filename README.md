@@ -31,7 +31,7 @@ The Kirana Store Register backend facilitates the management of transaction regi
 
 - **Postman Collection**: You can find the Postman collection for testing the APIs [here](./postman_collection.json).
 - **API Documentation**: Detailed documentation explaining the working of the APIs is available [here](./Kirana_Store_Backend.docx).
-- **Javadoc Documentation**: Extensive code documentation using Javadoc is available at [target/classes/site/apidocs](./target/classes/site/apidocs).
+- **Javadoc Documentation**: Extensive code documentation using Javadoc is available at [target/classes/site/apidocs](./target/site/apidocs).
 
 
 
