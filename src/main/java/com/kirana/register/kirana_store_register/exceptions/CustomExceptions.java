@@ -26,6 +26,6 @@ public class CustomExceptions extends RuntimeException {
    * @return the HTTP status
    */
   public HttpStatus getStatus() {
-    return status; // Returns the associated HTTP status
+    return status; 
   }
 }
