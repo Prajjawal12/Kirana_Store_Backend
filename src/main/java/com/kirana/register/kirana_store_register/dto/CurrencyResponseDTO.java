@@ -8,6 +8,6 @@ import java.util.Map;
  */
 @Data
 public class CurrencyResponseDTO {
-  private boolean success; // Indicates if the API call was successful
-  private Map<String, Double> rates; // A map of currency rates
+  private boolean success;
+  private Map<String, Double> rates; 
 }
