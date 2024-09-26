@@ -16,7 +16,7 @@ import lombok.Data;
 @Data
 public class Cache {
   @Id
-  private String id;ntry
+  private String id;
 
   private String originalCurrency;
 
